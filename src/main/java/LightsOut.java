@@ -18,7 +18,7 @@ public class LightsOut {
 
     public static void main(String[] args) {
 
-        String fileName = "00.txt";
+        String fileName = "01.txt";
 
         objectInitializer = new ObjectInitializer(fileName);
 
@@ -31,7 +31,10 @@ public class LightsOut {
 
         Executor executor = new Executor(board, finalBoard, pieces);
 
-        resultedList = executor.execute();
+        //String strategy = "bruteForceSolution";
+        String strategy = "circularLoopSolution";
+
+        resultedList = executor.execute(strategy);
 
         if(resultedList == null){
             System.out.println("Didn't found the solution.");
@@ -46,8 +49,7 @@ public class LightsOut {
         StringBuilder result = new StringBuilder();
 
         for(PieceCoordinate pc : resultedList){
-            coordinates.append(pc.getCoordinate().getYCoordinate()).append(",").append(pc.getCoordinate().getXCoordinate());
-            //coordinates.append(pc.getCoordinate().getXCoordinate()).append(",").append(pc.getCoordinate().getYCoordinate());
+            coordinates.append(pc.getCoordinate().getXCoordinate()).append(",").append(pc.getCoordinate().getYCoordinate());
             result.append(coordinates.toString()).append(" ");
             coordinates.setLength(0);
         }
