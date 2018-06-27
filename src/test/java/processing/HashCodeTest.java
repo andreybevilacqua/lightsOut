@@ -10,16 +10,23 @@ public class HashCodeTest {
     private static Board board;
     private static Board anotherBoard;
 
-    private static ObjectInitializer objectInitializer;
+    private static BoardObjectInitializer boardObjectInitializer;
+    private static ReadFile readFile;
 
-    private String fileName;
+    private String firstLine;
+    private String secondLine;
+    private String thirdLine;
 
     @Before
     public void setup(){
-        fileName = "01.txt";
 
-        objectInitializer = new ObjectInitializer(fileName);
-        board = objectInitializer.getBoard();
+        readFile = new ReadFile("01.txt");
+        firstLine = readFile.getFirstLine();
+        secondLine = readFile.getSecondLine();
+        thirdLine = readFile.getThirdLine();
+
+        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+        board = boardObjectInitializer.getBoard();
     }
 
     @Test
@@ -27,7 +34,7 @@ public class HashCodeTest {
 
         int initialBoardHashCode = board.generateDeepHashCode();
 
-        anotherBoard = objectInitializer.getBoard();
+        anotherBoard = boardObjectInitializer.getBoard();
         int anotherHash = anotherBoard.generateDeepHashCode();
 
         Assert.assertTrue(initialBoardHashCode == anotherHash);

@@ -11,19 +11,29 @@ public class CoordinateGeneratorTest {
 
     private Board board;
     private ArrayList<Piece> pieces;
-    private ObjectInitializer objectInitializer;
+    private BoardObjectInitializer boardObjectInitializer;
+    private PieceObjectInitializer pieceObjectInitializer;
 
-    private String fileName;
+    private static ReadFile readFile;
+
+    private String firstLine;
+    private String secondLine;
+    private String thirdLine;
 
     @Test
     public void findAllPossiblieCoordinateOptionsForEachPieceWithFile01Test() throws Exception {
 
-        fileName = "01.txt";
+        readFile = new ReadFile("01.txt");
+        firstLine = readFile.getFirstLine();
+        secondLine = readFile.getSecondLine();
+        thirdLine = readFile.getThirdLine();
 
-        objectInitializer = new ObjectInitializer(fileName);
+        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
 
-        board = objectInitializer.getBoard();
-        pieces = objectInitializer.getPieces();
+        board = boardObjectInitializer.getBoard();
+        pieces = pieceObjectInitializer.getPieces();
+
 
         CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
@@ -64,12 +74,16 @@ public class CoordinateGeneratorTest {
     @Test
     public void findAllPossiblieCoordinateOptionsForEachPieceWithFile02Test() throws Exception {
 
-        fileName = "02.txt";
+        readFile = new ReadFile("02.txt");
+        firstLine = readFile.getFirstLine();
+        secondLine = readFile.getSecondLine();
+        thirdLine = readFile.getThirdLine();
 
-        objectInitializer = new ObjectInitializer(fileName);
+        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
 
-        board = objectInitializer.getBoard();
-        pieces = objectInitializer.getPieces();
+        board = boardObjectInitializer.getBoard();
+        pieces = pieceObjectInitializer.getPieces();
 
         CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 

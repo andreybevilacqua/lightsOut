@@ -85,25 +85,10 @@ public class CoordinateGenerator {
 
     private static int calculateQuantityOfPossibleOptions(Board board, Piece piece) {
 
-        int quantityOfPossibleOptions = 0;
-
         // If the size of line or column be equals of board, their values should be one.
-        int lineDifference = 1;
-        int columnDifference = 1;
+        int lineDifference = (board.getLineSize() - piece.getLineSize()) + 1;
+        int columnDifference = (board.getColumnSize() - piece.getColumnSize()) + 1;
 
-        int pieceLineSize = piece.getLineSize();
-        int pieceColumnSize = piece.getColumnSize();
-
-        if (pieceLineSize < board.getLineSize()) {
-            lineDifference = (board.getLineSize() - pieceLineSize) + 1;
-        }
-
-        if (pieceColumnSize < board.getColumnSize()) {
-            columnDifference = (board.getColumnSize() - pieceColumnSize) + 1;
-        }
-
-        quantityOfPossibleOptions = lineDifference * columnDifference;
-
-        return quantityOfPossibleOptions;
+        return lineDifference * columnDifference;
     }
 }

@@ -11,19 +11,28 @@ public class SortTest {
 
     private Board board;
     private ArrayList<Piece> pieces;
-    private ObjectInitializer objectInitializer;
+    private BoardObjectInitializer boardObjectInitializer;
+    private PieceObjectInitializer pieceObjectInitializer;
 
-    private String fileName;
+    private static ReadFile readFile;
+
+    private String firstLine;
+    private String secondLine;
+    private String thirdLine;
 
     @Test
     public void bubbleSortTest() {
 
-        fileName = "00.txt";
+        readFile = new ReadFile("00.txt");
+        firstLine = readFile.getFirstLine();
+        secondLine = readFile.getSecondLine();
+        thirdLine = readFile.getThirdLine();
 
-        objectInitializer = new ObjectInitializer(fileName);
+        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
 
-        board = objectInitializer.getBoard();
-        pieces = objectInitializer.getPieces();
+        board = boardObjectInitializer.getBoard();
+        pieces = pieceObjectInitializer.getPieces();
 
         CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 

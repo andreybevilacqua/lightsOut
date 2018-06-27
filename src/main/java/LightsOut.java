@@ -1,15 +1,16 @@
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
-import processing.CoordinateGenerator;
-import processing.Executor;
-import processing.ObjectInitializer;
+import processing.*;
 
 import java.util.ArrayList;
 
 public class LightsOut {
 
-    private static ObjectInitializer objectInitializer;
+    private static BoardObjectInitializer boardObjectInitializer;
+    private static FinalBoardInitializer finalBoardInitializer;
+    private static PieceObjectInitializer pieceObjectInitializer;
+    private static ReadFile readFile;
 
     private static Board board;
     private static Board finalBoard;
@@ -18,20 +19,26 @@ public class LightsOut {
 
     public static void main(String[] args) {
 
-        String fileName = "01.txt";
+        readFile = new ReadFile("02.txt");
 
-        objectInitializer = new ObjectInitializer(fileName);
+        String firstLine = readFile.getFirstLine();
+        String secondLine = readFile.getSecondLine();
+        String thirdLine = readFile.getThirdLine();
 
-        board = objectInitializer.getBoard();
-        finalBoard = objectInitializer.getFinalBoard();
+        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+        finalBoardInitializer = new FinalBoardInitializer();
+        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
 
-        pieces = objectInitializer.getPieces();
+        board = boardObjectInitializer.getBoard();
+        finalBoard = finalBoardInitializer.initializeFinalBoard(board.getLineSize(),
+                board.getColumnSize(), board.getDepth());
+
+        pieces = pieceObjectInitializer.getPieces();
 
         CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
         Executor executor = new Executor(board, finalBoard, pieces);
 
-        //String strategy = "bruteForceSolution";
         String strategy = "circularLoopSolution";
 
         resultedList = executor.execute(strategy);
