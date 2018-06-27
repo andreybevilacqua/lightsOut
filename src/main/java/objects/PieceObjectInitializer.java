@@ -1,4 +1,4 @@
-package processing;
+package objects;
 
 import model.Piece;
 

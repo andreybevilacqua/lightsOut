@@ -1,12 +1,12 @@
-package processing;
+package objects;
 
 import model.Board;
 
-public class FinalBoardInitializer {
+public class FinalBoardObjectInitializer {
 
     private Board finalBoard;
 
-    public FinalBoardInitializer(){
+    public FinalBoardObjectInitializer(){
     }
 
     public Board initializeFinalBoard(int lineSize, int columnSize, int depth) {

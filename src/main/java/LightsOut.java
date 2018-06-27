@@ -1,6 +1,9 @@
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
+import objects.BoardObjectInitializer;
+import objects.FinalBoardObjectInitializer;
+import objects.PieceObjectInitializer;
 import processing.*;
 
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 public class LightsOut {
 
     private static BoardObjectInitializer boardObjectInitializer;
-    private static FinalBoardInitializer finalBoardInitializer;
+    private static FinalBoardObjectInitializer finalBoardObjectInitializer;
     private static PieceObjectInitializer pieceObjectInitializer;
     private static ReadFile readFile;
 
@@ -26,11 +29,11 @@ public class LightsOut {
         String thirdLine = readFile.getThirdLine();
 
         boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-        finalBoardInitializer = new FinalBoardInitializer();
+        finalBoardObjectInitializer = new FinalBoardObjectInitializer();
         pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
 
         board = boardObjectInitializer.getBoard();
-        finalBoard = finalBoardInitializer.initializeFinalBoard(board.getLineSize(),
+        finalBoard = finalBoardObjectInitializer.initializeFinalBoard(board.getLineSize(),
                 board.getColumnSize(), board.getDepth());
 
         pieces = pieceObjectInitializer.getPieces();
