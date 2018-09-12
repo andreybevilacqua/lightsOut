@@ -5,6 +5,7 @@ import initializer.BoardObjectInitializer;
 import initializer.FinalBoardObjectInitializer;
 import initializer.PieceObjectInitializer;
 import processing.*;
+import solution.Strategy;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class LightsOut {
 
     public static void main(String[] args) {
 
-        readFile = new ReadFile("01.txt");
+        readFile = new ReadFile("00.txt");
 
         String firstLine = readFile.getFirstLine();
         String secondLine = readFile.getSecondLine();
@@ -42,10 +43,7 @@ public class LightsOut {
 
         Executor executor = new Executor(board, finalBoard, pieces);
 
-        // Criar um ENUM chamado Strategies. Definir as Strings de estrategias nesse enum.
-        String strategy = "circularLoopSolution";
-
-        resultedList = executor.execute(strategy);
+        resultedList = executor.execute(Strategy.CIRCULAR_LOOP);
 
         if(resultedList == null){
             System.out.println("Didn't found the solution.");
@@ -55,6 +53,7 @@ public class LightsOut {
 
     }
 
+    // Remover esse método daqui.
     private static String prepareResult(ArrayList<PieceCoordinate> resultedList){
         StringBuilder coordinates = new StringBuilder();
         StringBuilder result = new StringBuilder();
