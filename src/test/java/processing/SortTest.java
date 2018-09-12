@@ -2,8 +2,8 @@ package processing;
 
 import model.Board;
 import model.Piece;
-import objects.BoardObjectInitializer;
-import objects.PieceObjectInitializer;
+import initializer.BoardObjectInitializer;
+import initializer.PieceObjectInitializer;
 import org.junit.Assert;
 import org.junit.Test;
 
