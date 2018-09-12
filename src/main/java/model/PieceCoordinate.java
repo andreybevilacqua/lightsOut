@@ -14,8 +14,4 @@ public class PieceCoordinate {
 
     public Coordinate getCoordinate() { return coordinate; }
 
-    public void setPiece(Piece piece){ this.piece = piece; }
-
-    public void setCoordinate(Coordinate coordinate){ this.coordinate = coordinate; }
-
 }

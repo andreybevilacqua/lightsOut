@@ -10,7 +10,7 @@ public class CoordinateGenerator {
 
     public static void findAllPossiblieCoordinateOptionsForEachPiece(Board board, ArrayList<Piece> pieces) {
 
-        int quantityOfPossibleOptions = 1;
+        int quantityOfPossibleOptions;
 
         int pieceLineSize;
         int pieceColumnSize;
@@ -75,7 +75,6 @@ public class CoordinateGenerator {
 
                 }
             }
-
             piece.addAllCoordinatesIntoCoordinateList(coordinates);
             coordinates.clear();
             lineCoordinateCounter = 0;

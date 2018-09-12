@@ -1,4 +1,4 @@
-package objects;
+package initializer;
 
 import model.Piece;
 
@@ -77,7 +77,6 @@ public class PieceObjectInitializer {
                 }
             }
         }
-
         return pieces;
     }
 
@@ -116,7 +115,6 @@ public class PieceObjectInitializer {
                     }
                 }
             }
-
             line++;
         }
         return piece;

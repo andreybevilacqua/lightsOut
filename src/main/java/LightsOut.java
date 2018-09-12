@@ -1,9 +1,9 @@
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
-import objects.BoardObjectInitializer;
-import objects.FinalBoardObjectInitializer;
-import objects.PieceObjectInitializer;
+import initializer.BoardObjectInitializer;
+import initializer.FinalBoardObjectInitializer;
+import initializer.PieceObjectInitializer;
 import processing.*;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class LightsOut {
 
     public static void main(String[] args) {
 
-        readFile = new ReadFile("02.txt");
+        readFile = new ReadFile("01.txt");
 
         String firstLine = readFile.getFirstLine();
         String secondLine = readFile.getSecondLine();
@@ -42,6 +42,7 @@ public class LightsOut {
 
         Executor executor = new Executor(board, finalBoard, pieces);
 
+        // Criar um ENUM chamado Strategies. Definir as Strings de estrategias nesse enum.
         String strategy = "circularLoopSolution";
 
         resultedList = executor.execute(strategy);

@@ -1,4 +1,4 @@
-package objects;
+package initializer;
 
 import model.Board;
 

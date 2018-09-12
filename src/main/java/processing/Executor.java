@@ -40,6 +40,7 @@ public class Executor {
     public ArrayList<PieceCoordinate> execute(String strategy){
 
         piecesBackup.addAll(pieces);
+        // Usar Collections.sort
         pieces = new Sort().bubbleSort(pieces);
 
         if(strategy.equals("bruteForceSolution")){
@@ -50,6 +51,7 @@ public class Executor {
 
     }
 
+    // Criar uma classe para cada solucao!
     private ArrayList<PieceCoordinate> bruteForceSolution(){
 
         Board newBoard;
@@ -105,11 +107,10 @@ public class Executor {
 
             }
         }
-
         return resultList;
-
     }
 
+    // Criar uma classe para cada solucao!
     private ArrayList<PieceCoordinate> circularLoopSolution(){
 
         int pointerThatDefinesWhichPieceImIn = 0;
@@ -184,7 +185,6 @@ public class Executor {
                     pointerFromAllListThatDefinesWhichCoordinateShouldIUse++;
                 }
             }
-
             boardsGeneratedList.clear();
             pieceCoordinatesList.clear();
         }
@@ -195,6 +195,7 @@ public class Executor {
         return resultedList;
     }
 
+    // Esse cara pode ir para a classe model Board.
     private Board createAndPrepareNewBoard(Board board, Piece piece, int coordinatePosition){
         Board newBoard = new Board(board.getLineSize(), board.getColumnSize(), board.getDepth());
 
