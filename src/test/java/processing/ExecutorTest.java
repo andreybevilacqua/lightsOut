@@ -22,8 +22,6 @@ public class ExecutorTest {
     private String secondLine;
     private String thirdLine;
 
-    private String fileName;
-
     @Test
     public void circularLoopSolutionTest(){
 
