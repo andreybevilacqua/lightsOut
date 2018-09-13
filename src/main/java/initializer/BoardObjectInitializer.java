@@ -11,7 +11,12 @@ public class BoardObjectInitializer {
     private int depth;
 
     public BoardObjectInitializer(String firstLine, String secondLine){
-        depth = parseDepthStringToInt(firstLine);
+        try{
+            depth = Integer.parseInt(firstLine);
+        } catch (NumberFormatException e){
+            depth = -1;
+        }
+
         createBoard(secondLine);
     }
 
@@ -24,19 +29,6 @@ public class BoardObjectInitializer {
                 boardNumbersAsStringList.get(0).length(), depth);
 
         populateBoardWithInputNumbers(secondLine);
-    }
-
-    private int parseDepthStringToInt(String stringNumber){
-
-        int depth;
-
-        try{
-            depth = Integer.parseInt(stringNumber);
-        } catch (NumberFormatException e){
-            depth = -1;
-        }
-
-        return depth;
     }
 
     private ArrayList<String> getBoardNumbersAsStringList(String secondLine){

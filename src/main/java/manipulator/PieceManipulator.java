@@ -1,10 +1,12 @@
-package processing;
+package manipulator;
 
 import model.Board;
 import model.Coordinate;
 import model.Piece;
 
-public class BoardPieceManipulator {
+import java.util.ArrayList;
+
+public class PieceManipulator {
 
     public void applyPieceInBoardInDesiredCoordinate(Piece piece, Board board, Coordinate coordinate) {
 
@@ -23,15 +25,9 @@ public class BoardPieceManipulator {
         }
     }
 
-    public int[][] copyAllValuesFromPreviousBoardToAnotherBoard(Board newBoard, int[][] matrixToBeCopied){
-        int[][] copyMatrix = new int[newBoard.getLineSize()][newBoard.getColumnSize()];
-
-        for(int i = 0; i < matrixToBeCopied.length; i++){
-            for(int j = 0; j < matrixToBeCopied[0].length; j++){
-                copyMatrix[i][j] = matrixToBeCopied[i][j];
-            }
+    public void populateDefaultPositionOfEachPiece(ArrayList<Piece> pieces, int[] defaultPositionOfEachPiece){
+        for(int i = 0; i < pieces.size(); i++){
+            defaultPositionOfEachPiece[i] = 0;
         }
-        return copyMatrix;
     }
-
 }

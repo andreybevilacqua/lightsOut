@@ -1,12 +1,14 @@
 package processing;
 
-import model.Board;
-import model.Piece;
 import initializer.BoardObjectInitializer;
 import initializer.PieceObjectInitializer;
+import manipulator.CoordinateManipulator;
+import model.Board;
+import model.Piece;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class ExecutorTest {
@@ -25,19 +27,23 @@ public class ExecutorTest {
     @Test
     public void circularLoopSolutionTest(){
 
-        readFile = new ReadFile("01.txt");
-        firstLine = readFile.getFirstLine();
-        secondLine = readFile.getSecondLine();
-        thirdLine = readFile.getThirdLine();
+        try{
+            readFile = new ReadFile("01.txt");
+            firstLine = readFile.getFirstLine();
+            secondLine = readFile.getSecondLine();
+            thirdLine = readFile.getThirdLine();
 
-        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
+            boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+            pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
 
-        board = boardObjectInitializer.getBoard();
-        pieces = pieceObjectInitializer.getPieces();
+            board = boardObjectInitializer.getBoard();
+            pieces = pieceObjectInitializer.getPieces();
 
-        CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
+            CoordinateManipulator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
-        Assert.assertTrue(true);
+            Assert.assertTrue(true);
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
     }
 }

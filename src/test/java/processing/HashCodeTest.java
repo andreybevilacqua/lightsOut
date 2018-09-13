@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
+
 public class HashCodeTest {
 
     private static Board board;
@@ -21,13 +23,17 @@ public class HashCodeTest {
     @Before
     public void setup(){
 
-        readFile = new ReadFile("01.txt");
-        firstLine = readFile.getFirstLine();
-        secondLine = readFile.getSecondLine();
-        thirdLine = readFile.getThirdLine();
+        try{
+            readFile = new ReadFile("01.txt");
+            firstLine = readFile.getFirstLine();
+            secondLine = readFile.getSecondLine();
+            thirdLine = readFile.getThirdLine();
 
-        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-        board = boardObjectInitializer.getBoard();
+            boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+            board = boardObjectInitializer.getBoard();
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
     }
 
     @Test

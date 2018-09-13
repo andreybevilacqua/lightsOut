@@ -1,67 +1,51 @@
 package processing;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class ReadFile {
 
     private int lineCounter;
 
-    private BufferedReader bufferedReader;
-    private FileReader fileReader;
-
-    private String directory;
     private String fileName;
     private String firstLine;
     private String secondLine;
     private String thirdLine;
 
-    private StringBuilder directoryAndFileName;
-
-    public ReadFile(String fileName){
+    public ReadFile(String fileName) throws FileNotFoundException {
         lineCounter = 0;
+        this.fileName = "/Users/andreybevilacqua/Documents/java/workspace/lightsOut/src/main/resources/InputFiles/" + fileName;
 
-        directory = "/Users/andreybevilacqua/Documents/java/workspace/lightsOut/src/main/resources/InputFiles/";
-        this.fileName = fileName;
-
-        directoryAndFileName = new StringBuilder();
-        directoryAndFileName.append(directory)
-                .append(this.fileName);
-
-        readFile(directoryAndFileName.toString());
+        readFile();
     }
 
-    private void readFile(String directoryAndFileName){
+    private void readFile() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(this.fileName));
 
-        try{
-            fileReader = new FileReader(directoryAndFileName);
-            bufferedReader = new BufferedReader(fileReader);
+        while (scanner.hasNextLine()) {
+            if (lineCounter == 0) { // First line: depth.
+                firstLine = scanner.nextLine();
 
-            String currentLine;
+            } else if (lineCounter == 1) { // Second line: board.
+                secondLine = scanner.nextLine();
 
-            while((currentLine = bufferedReader.readLine()) != null){
-
-                if(lineCounter == 0){ // First line: depth.
-                    firstLine = currentLine;
-
-                } else if(lineCounter == 1){ // Second line: board.
-                    secondLine = currentLine;
-
-                } else { // Last line: pieces.
-                    thirdLine = currentLine;
-                }
-
-                lineCounter++;
+            } else { // Last line: pieces.
+                thirdLine = scanner.nextLine();
             }
-
-        } catch (IOException e){
-            e.printStackTrace();
+            lineCounter++;
         }
     }
 
-    public String getFirstLine(){ return firstLine; }
-    public String getSecondLine(){ return secondLine; }
-    public String getThirdLine(){ return thirdLine; }
+    public String getFirstLine() {
+        return firstLine;
+    }
+
+    public String getSecondLine() {
+        return secondLine;
+    }
+
+    public String getThirdLine() {
+        return thirdLine;
+    }
 
 }

@@ -17,7 +17,6 @@ public class PieceObjectInitializer {
     public ArrayList<Piece> getPieces() { return pieces;}
 
     private ArrayList<String> generatePiecesCharactersList(String lastLine){
-
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -38,12 +37,10 @@ public class PieceObjectInitializer {
                 stringBuilder.setLength(0);
             }
         }
-
         return piecesCharacters;
     }
 
     private ArrayList<Piece> generatePieceObjectsList(ArrayList<String> piecesCharactersList){
-
         ArrayList<Piece> pieces = new ArrayList<>();
         ArrayList<String> listOFValuesOfEachPiece = new ArrayList<>();
 
@@ -52,9 +49,7 @@ public class PieceObjectInitializer {
         String temp;
 
         for(String s : piecesCharactersList){
-
             for(int i = 0; i <= s.length(); i++){
-
                 if(i < s.length()){
                     temp = s.substring(i, i+1);
 
@@ -65,7 +60,6 @@ public class PieceObjectInitializer {
                         stringBuilder.setLength(0);
                     }
                 } else{
-
                     listOFValuesOfEachPiece.add(stringBuilder.toString());
 
                     int column = getBiggestStringInsideTempArrayList(listOFValuesOfEachPiece);
@@ -81,7 +75,6 @@ public class PieceObjectInitializer {
     }
 
     private int getBiggestStringInsideTempArrayList(ArrayList<String> tempArrayList){
-
         int result = 0;
         int size;
 
@@ -95,16 +88,13 @@ public class PieceObjectInitializer {
     }
 
     private Piece createNewPiece(int totalLine, int totalColumn, ArrayList<String> listOFValuesOfEachPiece){
-
         Piece piece = new Piece(totalLine, totalColumn);
 
         String pieceString;
         int line = 0;
 
         for(String s : listOFValuesOfEachPiece){
-
             for(int i = 0; i <= s.length(); i++){
-
                 if(i < s.length()){
                     pieceString = s.substring(i, i+1);
 

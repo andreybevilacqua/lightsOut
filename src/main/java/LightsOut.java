@@ -1,12 +1,15 @@
-import model.Board;
-import model.Piece;
-import model.PieceCoordinate;
 import initializer.BoardObjectInitializer;
 import initializer.FinalBoardObjectInitializer;
 import initializer.PieceObjectInitializer;
-import processing.*;
+import model.Board;
+import model.Piece;
+import model.PieceCoordinate;
+import manipulator.CoordinateManipulator;
+import processing.Executor;
+import processing.ReadFile;
 import solution.Strategy;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class LightsOut {
@@ -23,48 +26,43 @@ public class LightsOut {
 
     public static void main(String[] args) {
 
-        readFile = new ReadFile("00.txt");
+        String result;
 
-        String firstLine = readFile.getFirstLine();
-        String secondLine = readFile.getSecondLine();
-        String thirdLine = readFile.getThirdLine();
+        try{
+            readFile = new ReadFile("01.txt");
 
-        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-        finalBoardObjectInitializer = new FinalBoardObjectInitializer();
-        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
+            String firstLine = readFile.getFirstLine();
+            String secondLine = readFile.getSecondLine();
+            String thirdLine = readFile.getThirdLine();
 
-        board = boardObjectInitializer.getBoard();
-        finalBoard = finalBoardObjectInitializer.initializeFinalBoard(board.getLineSize(),
-                board.getColumnSize(), board.getDepth());
+            boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
+            finalBoardObjectInitializer = new FinalBoardObjectInitializer();
+            pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
 
-        pieces = pieceObjectInitializer.getPieces();
+            board = boardObjectInitializer.getBoard();
+            finalBoard = finalBoardObjectInitializer.initializeFinalBoard(board.getLineSize(),
+                    board.getColumnSize(), board.getDepth());
 
-        CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
+            pieces = pieceObjectInitializer.getPieces();
 
-        Executor executor = new Executor(board, finalBoard, pieces);
+            CoordinateManipulator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
-        resultedList = executor.execute(Strategy.CIRCULAR_LOOP);
+            Executor executor = new Executor(board, finalBoard, pieces);
 
-        if(resultedList == null){
-            System.out.println("Didn't found the solution.");
-        } else{
-            System.out.println(prepareResult(resultedList));
+            resultedList = executor.execute(Strategy.CIRCULAR_LOOP);
+
+            if(resultedList == null){
+                result = "Didn't found the solution.";
+            } else{
+                result = executor.prepareResult(resultedList);
+            }
+
+            System.out.println(result);
+
+        } catch (FileNotFoundException e){
+            System.out.println("File was not found. Please add the input file in 'resources' folder");
         }
 
+
     }
-
-    // Remover esse método daqui.
-    private static String prepareResult(ArrayList<PieceCoordinate> resultedList){
-        StringBuilder coordinates = new StringBuilder();
-        StringBuilder result = new StringBuilder();
-
-        for(PieceCoordinate pc : resultedList){
-            coordinates.append(pc.getCoordinate().getXCoordinate()).append(",").append(pc.getCoordinate().getYCoordinate());
-            result.append(coordinates.toString()).append(" ");
-            coordinates.setLength(0);
-        }
-
-        return result.toString();
-    }
-
 }

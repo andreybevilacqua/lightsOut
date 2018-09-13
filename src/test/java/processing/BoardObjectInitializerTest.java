@@ -7,6 +7,7 @@ import initializer.PieceObjectInitializer;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class BoardObjectInitializerTest {
@@ -25,7 +26,7 @@ public class BoardObjectInitializerTest {
     private ArrayList<Piece> pieces;
 
     @Test
-    public void objectInitializerTestWithFirstFile(){
+    public void objectInitializerTestWithFirstFile() throws FileNotFoundException {
 
         readFile = new ReadFile("01.txt");
 
@@ -72,7 +73,7 @@ public class BoardObjectInitializerTest {
     }
 
     @Test
-    public void objectInitializerTestWithThirdFile(){
+    public void objectInitializerTestWithThirdFile() throws FileNotFoundException {
 
         readFile = new ReadFile("03.txt");
         firstLine = readFile.getFirstLine();

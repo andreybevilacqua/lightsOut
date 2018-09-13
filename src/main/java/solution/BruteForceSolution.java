@@ -3,7 +3,7 @@ package solution;
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
-import processing.BoardPieceManipulator;
+import manipulator.BoardManipulator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class BruteForceSolution implements Solution{
 
-    private BoardPieceManipulator boardPieceManipulator;
+    private BoardManipulator boardManipulator;
 
     private Board board;
     private Board finalBoard;
@@ -24,7 +24,7 @@ public class BruteForceSolution implements Solution{
         this.finalBoard = finalBoard;
         this.pieces = pieces;
 
-        boardPieceManipulator = new BoardPieceManipulator();
+        boardManipulator = new BoardManipulator();
 
         boardsGeneratedList = new ArrayList();
     }
@@ -54,7 +54,7 @@ public class BruteForceSolution implements Solution{
                 ArrayList<PieceCoordinate> pieceCoordinates = new ArrayList();
 
                 for(int i = 0; i < piece.getCoordinates().size(); i++){
-                    newBoard = createAndPrepareNewBoard(boardsGeneratedList.get(b), piece, i);
+                    newBoard = boardManipulator.createAndPrepareNewBoard(boardsGeneratedList.get(b), piece, i);
                     pieceCoordinate = new PieceCoordinate(piece, piece.getCoordinates().get(i));
 
                     pieceCoordinates.add(pieceCoordinate);
@@ -85,15 +85,5 @@ public class BruteForceSolution implements Solution{
             }
         }
         return resultList;
-    }
-
-    private Board createAndPrepareNewBoard(Board board, Piece piece, int coordinatePosition){
-        Board newBoard = new Board(board.getLineSize(), board.getColumnSize(), board.getDepth());
-
-        newBoard.setBoard(boardPieceManipulator.copyAllValuesFromPreviousBoardToAnotherBoard(newBoard, board.getBoard()));
-
-        boardPieceManipulator.applyPieceInBoardInDesiredCoordinate(piece, newBoard, piece.getCoordinates().get(coordinatePosition));
-
-        return newBoard;
     }
 }

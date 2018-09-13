@@ -1,5 +1,6 @@
 package processing;
 
+import manipulator.CoordinateManipulator;
 import model.Board;
 import model.Piece;
 import initializer.BoardObjectInitializer;
@@ -9,7 +10,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class CoordinateGeneratorTest {
+public class CoordinateManipulatorTest {
 
     private Board board;
     private ArrayList<Piece> pieces;
@@ -37,7 +38,7 @@ public class CoordinateGeneratorTest {
         pieces = pieceObjectInitializer.getPieces();
 
 
-        CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
+        CoordinateManipulator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
         Assert.assertEquals(3, pieces.get(0).getCoordinates().size());
         Assert.assertEquals(3, pieces.get(1).getCoordinates().size());
@@ -87,7 +88,7 @@ public class CoordinateGeneratorTest {
         board = boardObjectInitializer.getBoard();
         pieces = pieceObjectInitializer.getPieces();
 
-        CoordinateGenerator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
+        CoordinateManipulator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
         Assert.assertTrue(pieces.size() == 9);
 

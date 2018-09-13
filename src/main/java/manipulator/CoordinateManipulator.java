@@ -1,4 +1,4 @@
-package processing;
+package manipulator;
 
 import model.Board;
 import model.Coordinate;
@@ -6,10 +6,9 @@ import model.Piece;
 
 import java.util.ArrayList;
 
-public class CoordinateGenerator {
+public class CoordinateManipulator {
 
     public static void findAllPossiblieCoordinateOptionsForEachPiece(Board board, ArrayList<Piece> pieces) {
-
         int quantityOfPossibleOptions;
 
         int pieceLineSize;
@@ -70,9 +69,7 @@ public class CoordinateGenerator {
                             lineCoordinateCounter = 0;
                             pieceLineSize = piece.getLineSize();
                         }
-
                     }
-
                 }
             }
             piece.addAllCoordinatesIntoCoordinateList(coordinates);

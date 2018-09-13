@@ -18,6 +18,8 @@ public class Executor {
     private BruteForceSolution bruteForceSolution;
     private CircularLoopSolution circularLoopSolution;
 
+    public Executor(){ }
+
     public Executor(Board board, Board finalBoard, ArrayList<Piece> pieces){
         this.pieces = pieces;
         this.piecesBackup = new ArrayList<>();
@@ -31,7 +33,7 @@ public class Executor {
         piecesBackup.addAll(pieces);
 
         pieces.sort(Comparator.comparingInt(piece -> piece.getCoordinates().size()));
-        
+
         if(strategy.equals(Strategy.CIRCULAR_LOOP)){
             return circularLoopSolution.solution();
         } else {
@@ -39,4 +41,29 @@ public class Executor {
         }
     }
 
+    public String prepareResult(ArrayList<PieceCoordinate> resultedList){
+        StringBuilder coordinates = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+
+        for(PieceCoordinate pc : resultedList){
+            coordinates.append(pc.getCoordinate().getXCoordinate()).append(",").append(pc.getCoordinate().getYCoordinate());
+            result.append(coordinates.toString()).append(" ");
+            coordinates.setLength(0);
+        }
+
+        return result.toString();
+    }
+
+    public ArrayList<PieceCoordinate> prepareResult(ArrayList<Piece> auxListOfPieces, ArrayList<PieceCoordinate> pieceCoordinates){
+        ArrayList<PieceCoordinate> resultedList = new ArrayList();
+
+        for(Piece piece : auxListOfPieces){
+            for(PieceCoordinate pieceCoordinate : pieceCoordinates){
+                if(pieceCoordinate.getPiece().generateDeepHashCode() == piece.generateDeepHashCode() ){
+                    resultedList.add(pieceCoordinate);
+                }
+            }
+        }
+        return resultedList;
+    }
 }
