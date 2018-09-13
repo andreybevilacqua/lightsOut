@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class PieceObjectInitializer {
 
-    private ArrayList<String> piecesCharactersList;
+    private ArrayList<String> piecesCharList;
     private ArrayList<Piece> pieces;
 
     public PieceObjectInitializer(String lastLine){
-        piecesCharactersList = generatePiecesCharactersList(lastLine);
-        pieces = generatePieceObjectsList(piecesCharactersList);
+        piecesCharList = generatePiecesCharactersList(lastLine);
+        pieces = generatePieceObjectsList(piecesCharList);
     }
 
     public ArrayList<Piece> getPieces() { return pieces;}
@@ -20,7 +20,7 @@ public class PieceObjectInitializer {
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
-        ArrayList<String> piecesCharacters = new ArrayList<>();
+        ArrayList<String> piecesCharacters = new ArrayList();
 
         for(int i = 0; i <= lastLine.length(); i++){
 
@@ -41,8 +41,8 @@ public class PieceObjectInitializer {
     }
 
     private ArrayList<Piece> generatePieceObjectsList(ArrayList<String> piecesCharactersList){
-        ArrayList<Piece> pieces = new ArrayList<>();
-        ArrayList<String> listOFValuesOfEachPiece = new ArrayList<>();
+        ArrayList<Piece> pieces = new ArrayList();
+        ArrayList<String> listValuesOfEachPiece = new ArrayList();
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -56,18 +56,18 @@ public class PieceObjectInitializer {
                     if(temp.equals(".") || temp.equals("X")){
                         stringBuilder.append(temp);
                     } else if(temp.equals(" ")){
-                        listOFValuesOfEachPiece.add(stringBuilder.toString());
+                        listValuesOfEachPiece.add(stringBuilder.toString());
                         stringBuilder.setLength(0);
                     }
                 } else{
-                    listOFValuesOfEachPiece.add(stringBuilder.toString());
+                    listValuesOfEachPiece.add(stringBuilder.toString());
 
-                    int column = getBiggestStringInsideTempArrayList(listOFValuesOfEachPiece);
+                    int column = getBiggestStringInsideTempArrayList(listValuesOfEachPiece);
 
-                    pieces.add(createNewPiece(listOFValuesOfEachPiece.size(), column, listOFValuesOfEachPiece));
+                    pieces.add(createNewPiece(listValuesOfEachPiece.size(), column, listValuesOfEachPiece));
 
                     stringBuilder.setLength(0);
-                    listOFValuesOfEachPiece.clear();
+                    listValuesOfEachPiece.clear();
                 }
             }
         }

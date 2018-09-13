@@ -34,10 +34,10 @@ public class BruteForceSolution implements Solution{
         Board newBoard;
         PieceCoordinate pieceCoordinate;
 
-        ArrayList<ArrayList<PieceCoordinate>> listOfPiecesAndCoordinates = new ArrayList();
+        ArrayList<ArrayList<PieceCoordinate>> piecesAndCoordinates = new ArrayList();
         ArrayList<PieceCoordinate> resultList = new ArrayList();
 
-        ArrayList<ArrayList<Board>> listOfAllBoardsList = new ArrayList();
+        ArrayList<ArrayList<Board>> boardsLists = new ArrayList();
 
         Map<Board, Board> mapOfBoards = new HashMap();
 
@@ -63,25 +63,23 @@ public class BruteForceSolution implements Solution{
                     mapOfBoards.put(newBoard, boardsGeneratedList.get(b));
                 }
 
-                listOfAllBoardsList.add(generatedBoards);
-                listOfPiecesAndCoordinates.add(pieceCoordinates);
+                boardsLists.add(generatedBoards);
+                piecesAndCoordinates.add(pieceCoordinates);
 
                 tempBoardList.addAll(generatedBoards);
             }
             boardCounter = boardsGeneratedList.size();
             boardsGeneratedList.addAll(tempBoardList);
-
         }
 
-        for(int i = (listOfAllBoardsList.size() -1); i >= 0; i--){
-            for(int j = 0; j < listOfAllBoardsList.get(i).size(); j++){
-                if(listOfAllBoardsList.get(i).get(j).generateDeepHashCode() == finalBoard.generateDeepHashCode()){
+        for(int i = (boardsLists.size() -1); i >= 0; i--){
+            for(int j = 0; j < boardsLists.get(i).size(); j++){
+                if(boardsLists.get(i).get(j).generateDeepHashCode() == finalBoard.generateDeepHashCode()){
                     System.out.println("I found the final result");
                     System.out.println("Prepare the Coordinate List here.");
-                    j = listOfAllBoardsList.get(i).size();
+                    j = boardsLists.get(i).size();
                     i = 0;
                 }
-
             }
         }
         return resultList;

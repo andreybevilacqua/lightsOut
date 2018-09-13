@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CoordinateManipulator {
 
     public static void findAllPossiblieCoordinateOptionsForEachPiece(Board board, ArrayList<Piece> pieces) {
-        int quantityOfPossibleOptions;
+        int totalPossibleOptions;
 
         int pieceLineSize;
         int pieceColumnSize;
@@ -23,7 +23,7 @@ public class CoordinateManipulator {
 
         for (Piece piece : pieces) {
 
-            quantityOfPossibleOptions = calculateQuantityOfPossibleOptions(board, piece);
+            totalPossibleOptions = calculateTotalPossibleOptions(board, piece);
 
             pieceLineSize = piece.getLineSize();
             pieceColumnSize = piece.getColumnSize();
@@ -36,7 +36,7 @@ public class CoordinateManipulator {
                 Coordinate coordinate = new Coordinate(lineCoordinateCounter, columnCoordinateCounter);
                 coordinates.add(coordinate);
 
-                if (quantityOfPossibleOptions == 1) {
+                if (totalPossibleOptions == 1) {
                     pieceLineSize++;
                     pieceColumnSize++;
                 } else {
@@ -54,7 +54,7 @@ public class CoordinateManipulator {
 
                     if (pieceLineSize == board.getLineSize() &&
                             pieceColumnSize == board.getColumnSize() &&
-                            coordinates.size() == (quantityOfPossibleOptions - 1)) {
+                            coordinates.size() == (totalPossibleOptions - 1)) {
 
                         Coordinate lastCoordinate = new Coordinate(lineCoordinateCounter, columnCoordinateCounter);
                         coordinates.add(lastCoordinate);
@@ -79,7 +79,7 @@ public class CoordinateManipulator {
         }
     }
 
-    private static int calculateQuantityOfPossibleOptions(Board board, Piece piece) {
+    private static int calculateTotalPossibleOptions(Board board, Piece piece) {
 
         // If the size of line or column be equals of board, their values should be one.
         int lineDifference = (board.getLineSize() - piece.getLineSize()) + 1;

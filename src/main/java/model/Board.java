@@ -44,7 +44,6 @@ public class Board{
     }
 
     public void incrementBoardCell(int line, int column){
-
         if((board[line][column] + increment) == depth){
             board[line][column] = 0;
 

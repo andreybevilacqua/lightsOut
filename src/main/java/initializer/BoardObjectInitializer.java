@@ -16,23 +16,21 @@ public class BoardObjectInitializer {
         } catch (NumberFormatException e){
             depth = -1;
         }
-
         createBoard(secondLine);
     }
 
     public Board getBoard() { return board; }
 
     private void createBoard(String secondLine){
-        ArrayList<String> boardNumbersAsStringList = getBoardNumbersAsStringList(secondLine);
+        ArrayList<String> boardNumbersAsString = getBoardNumbersAsStringList(secondLine);
 
-        board = new Board(boardNumbersAsStringList.size(),
-                boardNumbersAsStringList.get(0).length(), depth);
+        board = new Board(boardNumbersAsString.size(),
+                boardNumbersAsString.get(0).length(), depth);
 
         populateBoardWithInputNumbers(secondLine);
     }
 
     private ArrayList<String> getBoardNumbersAsStringList(String secondLine){
-
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -53,7 +51,6 @@ public class BoardObjectInitializer {
                 stringBuilder.setLength(0);
             }
         }
-
         return boardNumbersStringList;
     }
 

@@ -42,9 +42,9 @@ public class CircularLoopSolution implements Solution {
 
     public ArrayList<PieceCoordinate> solution(){
 
-        int pointerThatDefinesWhichPieceImIn = 0;
-        int pointerFromAllListThatDefinesWhichCoordinateShouldIUse = 0;
-        int pointerOfDefaultPositionOfEachPiece = 0;
+        int pointerWhichPieceImIn = 0;
+        int pointerWhichCoordinateShouldIUse = 0; // pointerFromAllListThatDefinesWhichCoordinateShouldIUse
+        int pointerDefaultPositionOfEachPiece = 0;
 
         int[] defaultPositionOfEachPiece = new int[pieces.size()];
         pieceManipulator.populateDefaultPositionOfEachPiece(pieces, defaultPositionOfEachPiece);
@@ -59,16 +59,16 @@ public class CircularLoopSolution implements Solution {
 
             for(int i = 0; i < pieces.size(); i++){
 
-                if(i == pointerThatDefinesWhichPieceImIn){
+                if(i == pointerWhichPieceImIn){
 
                     if(boardsGeneratedList.size() > 0){
                         newBoard = boardManipulator.createAndPrepareNewBoard(
-                                boardsGeneratedList.get(i - 1), pieces.get(i), pointerFromAllListThatDefinesWhichCoordinateShouldIUse);
+                                boardsGeneratedList.get(i - 1), pieces.get(i), pointerWhichCoordinateShouldIUse);
                     } else{
                         newBoard = boardManipulator.createAndPrepareNewBoard(
-                                board, pieces.get(i), pointerFromAllListThatDefinesWhichCoordinateShouldIUse);
+                                board, pieces.get(i), pointerWhichCoordinateShouldIUse);
                     }
-                    pieceCoordinate = new PieceCoordinate(pieces.get(i), pieces.get(i).getCoordinates().get(pointerFromAllListThatDefinesWhichCoordinateShouldIUse));
+                    pieceCoordinate = new PieceCoordinate(pieces.get(i), pieces.get(i).getCoordinates().get(pointerWhichCoordinateShouldIUse));
                 } else{
 
                     if(boardsGeneratedList.size() > 0){
@@ -88,34 +88,34 @@ public class CircularLoopSolution implements Solution {
                 foundAnswer = true;
                 resultedList = new Executor().prepareResult(piecesBackup, pieceCoordinatesList);
             } else {
-                if(pointerFromAllListThatDefinesWhichCoordinateShouldIUse == (pieces.get(pointerThatDefinesWhichPieceImIn).getCoordinates().size() - 1) ){
+                if(pointerWhichCoordinateShouldIUse == (pieces.get(pointerWhichPieceImIn).getCoordinates().size() - 1) ){
 
-                    if(pointerThatDefinesWhichPieceImIn == (pieces.size() -1) ){
+                    if(pointerWhichPieceImIn == (pieces.size() -1) ){
                         alreadyReset = true;
                     }
 
                     if(alreadyReset){
 
-                        if(pointerOfDefaultPositionOfEachPiece == pieces.size()){
+                        if(pointerDefaultPositionOfEachPiece == pieces.size()){
                             didNotFound = true;
                             break;
                         }
 
-                        if(defaultPositionOfEachPiece[pointerOfDefaultPositionOfEachPiece] != (pieces.get(pointerOfDefaultPositionOfEachPiece).getCoordinates().size() -1)){
-                            defaultPositionOfEachPiece[pointerOfDefaultPositionOfEachPiece]++;
+                        if(defaultPositionOfEachPiece[pointerDefaultPositionOfEachPiece] != (pieces.get(pointerDefaultPositionOfEachPiece).getCoordinates().size() -1)){
+                            defaultPositionOfEachPiece[pointerDefaultPositionOfEachPiece]++;
                         } else{
-                            pointerOfDefaultPositionOfEachPiece++;
+                            pointerDefaultPositionOfEachPiece++;
                         }
-                        pointerThatDefinesWhichPieceImIn = 0;
+                        pointerWhichPieceImIn = 0;
                         alreadyReset = false;
                     } else {
-                        pointerThatDefinesWhichPieceImIn++;
+                        pointerWhichPieceImIn++;
                     }
 
-                    pointerFromAllListThatDefinesWhichCoordinateShouldIUse = 0;
+                    pointerWhichCoordinateShouldIUse = 0;
 
                 } else{
-                    pointerFromAllListThatDefinesWhichCoordinateShouldIUse++;
+                    pointerWhichCoordinateShouldIUse++;
                 }
             }
             boardsGeneratedList.clear();

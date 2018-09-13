@@ -20,7 +20,7 @@ public class ReadFile {
     }
 
     private void readFile() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(this.fileName));
+        Scanner scanner = new Scanner(new File(this.fileName), "UTF-8");
 
         while (scanner.hasNextLine()) {
             if (lineCounter == 0) { // First line: depth.
