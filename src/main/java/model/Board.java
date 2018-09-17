@@ -39,11 +39,11 @@ public class Board{
         return board[line][column];
     }
 
-    public void insertValueIntoCell(int cellValue, int line, int column){
+    public void insertValue(int cellValue, int line, int column){
         board[line][column] = cellValue;
     }
 
-    public void incrementBoardCell(int line, int column){
+    public void incrementCell(int line, int column){
         if((board[line][column] + increment) == depth){
             board[line][column] = 0;
 

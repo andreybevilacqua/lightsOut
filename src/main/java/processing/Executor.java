@@ -46,7 +46,7 @@ public class Executor {
         StringBuilder result = new StringBuilder();
 
         for(PieceCoordinate pc : resultedList){
-            coordinates.append(pc.getCoordinate().getXCoordinate()).append(",").append(pc.getCoordinate().getYCoordinate());
+            coordinates.append(pc.getCoordinate().getX()).append(",").append(pc.getCoordinate().getY());
             result.append(coordinates.toString()).append(" ");
             coordinates.setLength(0);
         }

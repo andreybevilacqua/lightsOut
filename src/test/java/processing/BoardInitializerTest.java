@@ -2,18 +2,18 @@ package processing;
 
 import model.Board;
 import model.Piece;
-import initializer.BoardObjectInitializer;
-import initializer.PieceObjectInitializer;
+import initializer.BoardInitializer;
+import initializer.PieceInitializer;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class BoardObjectInitializerTest {
+public class BoardInitializerTest {
 
-    private BoardObjectInitializer boardObjectInitializer;
-    private PieceObjectInitializer pieceObjectInitializer;
+    private BoardInitializer boardInitializer;
+    private PieceInitializer pieceInitializer;
 
     private static ReadFile readFile;
 
@@ -34,11 +34,11 @@ public class BoardObjectInitializerTest {
         secondLine = readFile.getSecondLine();
         thirdLine = readFile.getThirdLine();
 
-        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
+        boardInitializer = new BoardInitializer(firstLine, secondLine);
+        pieceInitializer = new PieceInitializer(thirdLine);
 
-        board = boardObjectInitializer.getBoard();
-        pieces = pieceObjectInitializer.getPieces();
+        board = boardInitializer.getBoard();
+        pieces = pieceInitializer.getPieces();
 
         // Board validation.
         Assert.assertTrue(board.getDepth() == 2);
@@ -80,11 +80,11 @@ public class BoardObjectInitializerTest {
         secondLine = readFile.getSecondLine();
         thirdLine = readFile.getThirdLine();
 
-        boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-        pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
+        boardInitializer = new BoardInitializer(firstLine, secondLine);
+        pieceInitializer = new PieceInitializer(thirdLine);
 
-        board = boardObjectInitializer.getBoard();
-        pieces = pieceObjectInitializer.getPieces();
+        board = boardInitializer.getBoard();
+        pieces = pieceInitializer.getPieces();
 
         // Board validation.
         Assert.assertTrue(board.getDepth() == 3);

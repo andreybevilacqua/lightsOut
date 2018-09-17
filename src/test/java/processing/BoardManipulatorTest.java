@@ -1,7 +1,7 @@
 package processing;
 
-import initializer.BoardObjectInitializer;
-import initializer.PieceObjectInitializer;
+import initializer.BoardInitializer;
+import initializer.PieceInitializer;
 import manipulator.BoardManipulator;
 import manipulator.CoordinateManipulator;
 import manipulator.PieceManipulator;
@@ -18,8 +18,8 @@ public class BoardManipulatorTest {
 
     private Board board;
     private ArrayList<Piece> pieces;
-    private BoardObjectInitializer boardObjectInitializer;
-    private PieceObjectInitializer pieceObjectInitializer;
+    private BoardInitializer boardInitializer;
+    private PieceInitializer pieceInitializer;
 
     private static ReadFile readFile;
 
@@ -37,11 +37,11 @@ public class BoardManipulatorTest {
             secondLine = readFile.getSecondLine();
             thirdLine = readFile.getThirdLine();
 
-            boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-            pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
+            boardInitializer = new BoardInitializer(firstLine, secondLine);
+            pieceInitializer = new PieceInitializer(thirdLine);
 
-            board = boardObjectInitializer.getBoard();
-            pieces = pieceObjectInitializer.getPieces();
+            board = boardInitializer.getBoard();
+            pieces = pieceInitializer.getPieces();
 
             CoordinateManipulator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
@@ -52,7 +52,7 @@ public class BoardManipulatorTest {
 
             anotherBoard.setBoard(boardManipulator.copyAllValuesFromPreviousBoardToAnotherBoard(anotherBoard, board.getBoard()));
 
-            pieceManipulator.applyPieceInBoardInDesiredCoordinate(pieces.get(4), anotherBoard, pieces.get(4).getCoordinates().get(1));
+            pieceManipulator.applyPieceInBoard(pieces.get(4), anotherBoard, pieces.get(4).getCoordinates().get(1));
 
             Assert.assertTrue(anotherBoard.getBoard()[1][0] == 0);
             Assert.assertTrue(anotherBoard.getBoard()[1][1] == 0);
@@ -60,7 +60,7 @@ public class BoardManipulatorTest {
             Assert.assertTrue(anotherBoard.getBoard()[2][1] == 0);
 
             anotherBoard.setBoard(boardManipulator.copyAllValuesFromPreviousBoardToAnotherBoard(anotherBoard, board.getBoard()));
-            pieceManipulator.applyPieceInBoardInDesiredCoordinate(pieces.get(4), anotherBoard, pieces.get(4).getCoordinates().get(2));
+            pieceManipulator.applyPieceInBoard(pieces.get(4), anotherBoard, pieces.get(4).getCoordinates().get(2));
 
             Assert.assertTrue(anotherBoard.getBoard()[0][1] == 1);
             Assert.assertTrue(anotherBoard.getBoard()[0][2] == 0);
@@ -68,7 +68,7 @@ public class BoardManipulatorTest {
             Assert.assertTrue(anotherBoard.getBoard()[1][2] == 0);
 
             anotherBoard.setBoard(boardManipulator.copyAllValuesFromPreviousBoardToAnotherBoard(anotherBoard, board.getBoard()));
-            pieceManipulator.applyPieceInBoardInDesiredCoordinate(pieces.get(4), anotherBoard, pieces.get(4).getCoordinates().get(3));
+            pieceManipulator.applyPieceInBoard(pieces.get(4), anotherBoard, pieces.get(4).getCoordinates().get(3));
 
             Assert.assertTrue(anotherBoard.getBoard()[1][1] == 1);
             Assert.assertTrue(anotherBoard.getBoard()[1][2] == 1);

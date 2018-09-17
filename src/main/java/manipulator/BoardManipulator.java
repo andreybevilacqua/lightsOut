@@ -3,6 +3,8 @@ package manipulator;
 import model.Board;
 import model.Piece;
 
+import java.util.Arrays;
+
 public class BoardManipulator {
 
     private PieceManipulator pieceManipulator;
@@ -11,25 +13,26 @@ public class BoardManipulator {
         pieceManipulator = new PieceManipulator();
     }
 
-    public Board createAndPrepareNewBoard(Board board, Piece piece, int coordinatePosition){
+    public Board createNewBoard(Board board, Piece piece, int coordinatePosition){
         Board newBoard = new Board(board.getLineSize(), board.getColumnSize(), board.getDepth());
 
-        newBoard.setBoard(copyAllValuesFromPreviousBoardToAnotherBoard(newBoard, board.getBoard()));
+        prepareNewBoard(board, newBoard);
 
-        pieceManipulator.applyPieceInBoardInDesiredCoordinate(piece, newBoard, piece.getCoordinates().get(coordinatePosition));
+        pieceManipulator.applyPieceInBoard(piece, newBoard, piece.getCoordinates().get(coordinatePosition));
 
         return newBoard;
     }
 
-    public int[][] copyAllValuesFromPreviousBoardToAnotherBoard(Board newBoard, int[][] matrixToBeCopied){
-        int[][] copyMatrix = new int[newBoard.getLineSize()][newBoard.getColumnSize()];
+    private void prepareNewBoard(Board board, Board newBoard){
+        newBoard.setBoard(copyAllValuesFromPreviousBoardToAnotherBoard(newBoard, board.getBoard()));
+    }
 
+    public int[][] copyAllValuesFromPreviousBoardToAnotherBoard(Board newBoard, int[][] matrixToBeCopied){
+        int[][] copy = new int[newBoard.getLineSize()][newBoard.getColumnSize()];
         for(int i = 0; i < matrixToBeCopied.length; i++){
-            for(int j = 0; j < matrixToBeCopied[0].length; j++){
-                copyMatrix[i][j] = matrixToBeCopied[i][j];
-            }
+            copy[i] = Arrays.copyOf(matrixToBeCopied[i], matrixToBeCopied[i].length);
         }
-        return copyMatrix;
+        return copy;
     }
 
 }

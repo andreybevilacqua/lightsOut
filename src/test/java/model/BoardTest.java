@@ -38,13 +38,13 @@ public class BoardTest {
 
         board = new Board(line, column, depth);
 
-        board.insertValueIntoCell(0, 0, 0);
+        board.insertValue(0, 0, 0);
         Assert.assertTrue(board.getCellValue(0,0) == 0);
 
-        board.incrementBoardCell(0,0);
+        board.incrementCell(0,0);
         Assert.assertTrue(board.getCellValue(0,0) == 1);
 
-        board.incrementBoardCell(0,0);
+        board.incrementCell(0,0);
         Assert.assertTrue(board.getCellValue(0,0) == 0);
     }
 

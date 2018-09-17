@@ -1,7 +1,7 @@
 package processing;
 
-import initializer.BoardObjectInitializer;
-import initializer.PieceObjectInitializer;
+import initializer.BoardInitializer;
+import initializer.PieceInitializer;
 import manipulator.CoordinateManipulator;
 import model.Board;
 import model.Piece;
@@ -15,8 +15,8 @@ public class ExecutorTest {
 
     private Board board;
     private ArrayList<Piece> pieces;
-    private BoardObjectInitializer boardObjectInitializer;
-    private PieceObjectInitializer pieceObjectInitializer;
+    private BoardInitializer boardInitializer;
+    private PieceInitializer pieceInitializer;
 
     private static ReadFile readFile;
 
@@ -33,11 +33,11 @@ public class ExecutorTest {
             secondLine = readFile.getSecondLine();
             thirdLine = readFile.getThirdLine();
 
-            boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-            pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
+            boardInitializer = new BoardInitializer(firstLine, secondLine);
+            pieceInitializer = new PieceInitializer(thirdLine);
 
-            board = boardObjectInitializer.getBoard();
-            pieces = pieceObjectInitializer.getPieces();
+            board = boardInitializer.getBoard();
+            pieces = pieceInitializer.getPieces();
 
             CoordinateManipulator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 

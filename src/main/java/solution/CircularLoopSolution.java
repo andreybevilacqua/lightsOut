@@ -1,20 +1,19 @@
 package solution;
 
+import manipulator.BoardManipulator;
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
-import manipulator.BoardManipulator;
 import processing.Executor;
-import manipulator.PieceManipulator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CircularLoopSolution implements Solution {
 
     private boolean foundAnswer = false;
 
     private BoardManipulator boardManipulator;
-    private PieceManipulator pieceManipulator;
 
     private Board board;
     private Board finalBoard;
@@ -31,7 +30,6 @@ public class CircularLoopSolution implements Solution {
         this.pieces = pieces;
 
         boardManipulator = new BoardManipulator();
-        pieceManipulator = new PieceManipulator();
 
         boardsGeneratedList = new ArrayList();
         pieceCoordinatesList = new ArrayList();
@@ -47,7 +45,7 @@ public class CircularLoopSolution implements Solution {
         int pointerDefaultPositionOfEachPiece = 0;
 
         int[] defaultPositionOfEachPiece = new int[pieces.size()];
-        pieceManipulator.populateDefaultPositionOfEachPiece(pieces, defaultPositionOfEachPiece);
+        Arrays.fill(defaultPositionOfEachPiece, 0);
 
         boolean alreadyReset = false;
         boolean didNotFound = false;
@@ -62,20 +60,20 @@ public class CircularLoopSolution implements Solution {
                 if(i == pointerWhichPieceImIn){
 
                     if(boardsGeneratedList.size() > 0){
-                        newBoard = boardManipulator.createAndPrepareNewBoard(
+                        newBoard = boardManipulator.createNewBoard(
                                 boardsGeneratedList.get(i - 1), pieces.get(i), pointerWhichCoordinateShouldIUse);
                     } else{
-                        newBoard = boardManipulator.createAndPrepareNewBoard(
+                        newBoard = boardManipulator.createNewBoard(
                                 board, pieces.get(i), pointerWhichCoordinateShouldIUse);
                     }
                     pieceCoordinate = new PieceCoordinate(pieces.get(i), pieces.get(i).getCoordinates().get(pointerWhichCoordinateShouldIUse));
                 } else{
 
                     if(boardsGeneratedList.size() > 0){
-                        newBoard = boardManipulator.createAndPrepareNewBoard(
+                        newBoard = boardManipulator.createNewBoard(
                                 boardsGeneratedList.get(i - 1), pieces.get(i), defaultPositionOfEachPiece[i]);
                     } else{
-                        newBoard = boardManipulator.createAndPrepareNewBoard(
+                        newBoard = boardManipulator.createNewBoard(
                                 board, pieces.get(i), defaultPositionOfEachPiece[i]);
                     }
                     pieceCoordinate = new PieceCoordinate(pieces.get(i), pieces.get(i).getCoordinates().get(defaultPositionOfEachPiece[i]));

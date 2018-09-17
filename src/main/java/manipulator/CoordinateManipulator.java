@@ -65,14 +65,14 @@ public class CoordinateManipulator {
                     } else if (pieceLineSize >= board.getLineSize() &&
                             pieceColumnSize <= board.getColumnSize()) {
 
-                        if (coordinates.get(coordinates.size() - 1).getXCoordinate() == lineCoordinateCounter) {
+                        if (coordinates.get(coordinates.size() - 1).getX() == lineCoordinateCounter) {
                             lineCoordinateCounter = 0;
                             pieceLineSize = piece.getLineSize();
                         }
                     }
                 }
             }
-            piece.addAllCoordinatesIntoCoordinateList(coordinates);
+            piece.addAllCoordinates(coordinates);
             coordinates.clear();
             lineCoordinateCounter = 0;
             columnCoordinateCounter = 0;

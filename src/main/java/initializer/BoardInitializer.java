@@ -4,13 +4,13 @@ import model.Board;
 
 import java.util.ArrayList;
 
-public class BoardObjectInitializer {
+public class BoardInitializer {
 
     private Board board;
 
     private int depth;
 
-    public BoardObjectInitializer(String firstLine, String secondLine){
+    public BoardInitializer(String firstLine, String secondLine){
         try{
             depth = Integer.parseInt(firstLine);
         } catch (NumberFormatException e){
@@ -22,7 +22,7 @@ public class BoardObjectInitializer {
     public Board getBoard() { return board; }
 
     private void createBoard(String secondLine){
-        ArrayList<String> boardNumbersAsString = getBoardNumbersAsStringList(secondLine);
+        ArrayList<String> boardNumbersAsString = getBoardNumbersAsString(secondLine);
 
         board = new Board(boardNumbersAsString.size(),
                 boardNumbersAsString.get(0).length(), depth);
@@ -30,11 +30,11 @@ public class BoardObjectInitializer {
         populateBoardWithInputNumbers(secondLine);
     }
 
-    private ArrayList<String> getBoardNumbersAsStringList(String secondLine){
+    private ArrayList<String> getBoardNumbersAsString(String secondLine){
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
-        ArrayList<String> boardNumbersStringList = new ArrayList<>();
+        ArrayList<String> boardNumbersAsString = new ArrayList();
 
         for(int i = 0; i <= secondLine.length(); i++){
 
@@ -47,11 +47,11 @@ public class BoardObjectInitializer {
             if(temp.matches("\\d+")){
                 stringBuilder.append(temp);
             } else{
-                boardNumbersStringList.add(stringBuilder.toString());
+                boardNumbersAsString.add(stringBuilder.toString());
                 stringBuilder.setLength(0);
             }
         }
-        return boardNumbersStringList;
+        return boardNumbersAsString;
     }
 
     private void populateBoardWithInputNumbers(String secondLine){
@@ -60,17 +60,17 @@ public class BoardObjectInitializer {
         int line = 0;
         int column = 0;
 
-        String valueAsString;
+        String value;
 
         for(int i = 0; i <= secondLine.length(); i++){
 
             if(i < secondLine.length()){
 
-                valueAsString = secondLine.substring(i,i+1);
+                value = secondLine.substring(i,i+1);
 
-                if(!valueAsString.equals(",")){
-                    cellValue = Integer.parseInt(valueAsString);
-                    board.insertValueIntoCell(cellValue, line, column);
+                if(!value.equals(",")){
+                    cellValue = Integer.parseInt(value);
+                    board.insertValue(cellValue, line, column);
                     column++;
                 } else{
                     line++;

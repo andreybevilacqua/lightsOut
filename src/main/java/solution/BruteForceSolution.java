@@ -54,7 +54,7 @@ public class BruteForceSolution implements Solution{
                 ArrayList<PieceCoordinate> pieceCoordinates = new ArrayList();
 
                 for(int i = 0; i < piece.getCoordinates().size(); i++){
-                    newBoard = boardManipulator.createAndPrepareNewBoard(boardsGeneratedList.get(b), piece, i);
+                    newBoard = boardManipulator.createNewBoard(boardsGeneratedList.get(b), piece, i);
                     pieceCoordinate = new PieceCoordinate(piece, piece.getCoordinates().get(i));
 
                     pieceCoordinates.add(pieceCoordinate);

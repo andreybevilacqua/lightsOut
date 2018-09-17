@@ -16,8 +16,8 @@ public class CoordinateTest {
     @Test
     public void insertCoordinateTest(){
 
-        Assert.assertEquals(1, coordinate.getXCoordinate());
-        Assert.assertEquals(1, coordinate.getYCoordinate());
+        Assert.assertEquals(1, coordinate.getX());
+        Assert.assertEquals(1, coordinate.getY());
     }
 
 

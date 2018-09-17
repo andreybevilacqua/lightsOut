@@ -32,10 +32,10 @@ public class PieceTest {
     public void insertValueIntoPieceTest(){
         piece = new Piece(line, column);
 
-        piece.insertXValueIntoPiece(0,0);
+        piece.insertX(0,0);
         Assert.assertEquals('X', piece.getCellValue(0,0));
 
-        piece.insertDotValueIntoPiece( 0, 0);
+        piece.insertDot( 0, 0);
         Assert.assertEquals('.', piece.getCellValue(0,0));
     }
 

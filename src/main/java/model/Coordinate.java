@@ -2,22 +2,22 @@ package model;
 
 public class Coordinate {
 
-    private int xCoordinate;
-    private int yCoordinate;
+    private int x;
+    private int y;
 
-    public Coordinate(int xCoordinate, int yCoordinate){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public Coordinate(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 
-    public int getXCoordinate(){ return xCoordinate; }
+    public int getX(){ return x; }
 
-    public int getYCoordinate(){ return yCoordinate; }
+    public int getY(){ return y; }
 
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(xCoordinate).append(",").append(yCoordinate);
+        sb.append(x).append(",").append(y);
         return sb.toString();
     }
 }

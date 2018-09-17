@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Piece {
 
-    private char xCommand;
-    private char dotCommand;
+    private char X;
+    private char dot;
 
     private char[][] piece;
 
@@ -24,8 +24,8 @@ public class Piece {
 
         piece = new char[line][column];
 
-        xCommand = 'X';
-        dotCommand = '.';
+        X = 'X';
+        dot = '.';
 
         coordinates = new ArrayList<>();
     }
@@ -42,15 +42,15 @@ public class Piece {
 
     public ArrayList<Coordinate> getCoordinates(){ return coordinates; }
 
-    public void insertXValueIntoPiece(int line, int column){
-        piece[line][column] = xCommand;
+    public void insertX(int line, int column){
+        piece[line][column] = X;
     }
 
-    public void insertDotValueIntoPiece(int line, int column){
-        piece[line][column] = dotCommand;
+    public void insertDot(int line, int column){
+        piece[line][column] = dot;
     }
 
-    public void addAllCoordinatesIntoCoordinateList(ArrayList<Coordinate> coordinates){ this.coordinates.addAll(coordinates); }
+    public void addAllCoordinates(ArrayList<Coordinate> coordinates){ this.coordinates.addAll(coordinates); }
 
     public int generateDeepHashCode(){ return java.util.Arrays.deepHashCode(piece); }
 

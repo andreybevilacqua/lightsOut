@@ -3,24 +3,25 @@ package initializer;
 import model.Piece;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class PieceObjectInitializer {
+public class PieceInitializer {
 
-    private ArrayList<String> piecesCharList;
+    private ArrayList<String> pieceChars;
     private ArrayList<Piece> pieces;
 
-    public PieceObjectInitializer(String lastLine){
-        piecesCharList = generatePiecesCharactersList(lastLine);
-        pieces = generatePieceObjectsList(piecesCharList);
+    public PieceInitializer(String lastLine){
+        pieceChars = generatePiecesChars(lastLine);
+        pieces = generatePieceObjectsList(pieceChars);
     }
 
     public ArrayList<Piece> getPieces() { return pieces;}
 
-    private ArrayList<String> generatePiecesCharactersList(String lastLine){
+    private ArrayList<String> generatePiecesChars(String lastLine){
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
-        ArrayList<String> piecesCharacters = new ArrayList();
+        ArrayList<String> piecesChars = new ArrayList();
 
         for(int i = 0; i <= lastLine.length(); i++){
 
@@ -33,14 +34,14 @@ public class PieceObjectInitializer {
             if(temp.equals("X") || temp.equals(".") || temp.equals(" ")){
                 stringBuilder.append(temp);
             } else{
-                piecesCharacters.add(stringBuilder.toString());
+                piecesChars.add(stringBuilder.toString());
                 stringBuilder.setLength(0);
             }
         }
-        return piecesCharacters;
+        return piecesChars;
     }
 
-    private ArrayList<Piece> generatePieceObjectsList(ArrayList<String> piecesCharactersList){
+    private ArrayList<Piece> generatePieceObjectsList(ArrayList<String> piecesChars){
         ArrayList<Piece> pieces = new ArrayList();
         ArrayList<String> listValuesOfEachPiece = new ArrayList();
 
@@ -48,7 +49,7 @@ public class PieceObjectInitializer {
 
         String temp;
 
-        for(String s : piecesCharactersList){
+        for(String s : piecesChars){
             for(int i = 0; i <= s.length(); i++){
                 if(i < s.length()){
                     temp = s.substring(i, i+1);
@@ -62,7 +63,7 @@ public class PieceObjectInitializer {
                 } else{
                     listValuesOfEachPiece.add(stringBuilder.toString());
 
-                    int column = getBiggestStringInsideTempArrayList(listValuesOfEachPiece);
+                    int column = getBiggestString(listValuesOfEachPiece);
 
                     pieces.add(createNewPiece(listValuesOfEachPiece.size(), column, listValuesOfEachPiece));
 
@@ -74,34 +75,37 @@ public class PieceObjectInitializer {
         return pieces;
     }
 
-    private int getBiggestStringInsideTempArrayList(ArrayList<String> tempArrayList){
-        int result = 0;
-        int size;
-
-        for(String s : tempArrayList){
-            size = s.length();
-            if(size > result){
-                result = size;
-            }
-        }
-        return result;
+    private int getBiggestString(ArrayList<String> tempArrayList){
+//        int result = 0;
+//        int size;
+//
+//        for(String s : tempArrayList){
+//            size = s.length();
+//            if(size > result){
+//                result = size;
+//            }
+//        }
+//
+//        return result;
+        tempArrayList.sort(Comparator.comparing(String::length));
+        return tempArrayList.get(tempArrayList.size()-1).length();
     }
 
-    private Piece createNewPiece(int totalLine, int totalColumn, ArrayList<String> listOFValuesOfEachPiece){
-        Piece piece = new Piece(totalLine, totalColumn);
+    private Piece createNewPiece(int lineSize, int columnSize, ArrayList<String> listOFValuesOfEachPiece){
+        Piece piece = new Piece(lineSize, columnSize);
 
-        String pieceString;
+        String xOrDot;
         int line = 0;
 
         for(String s : listOFValuesOfEachPiece){
             for(int i = 0; i <= s.length(); i++){
                 if(i < s.length()){
-                    pieceString = s.substring(i, i+1);
+                    xOrDot = s.substring(i, i+1);
 
-                    if(pieceString.equals("X")){
-                        piece.insertXValueIntoPiece(line, i);
-                    } else if(pieceString.equals(".")){
-                        piece.insertDotValueIntoPiece(line, i);
+                    if(xOrDot.equals("X")){
+                        piece.insertX(line, i);
+                    } else if(xOrDot.equals(".")){
+                        piece.insertDot(line, i);
                     }
                 }
             }

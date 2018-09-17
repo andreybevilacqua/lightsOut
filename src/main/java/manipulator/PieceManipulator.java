@@ -4,30 +4,22 @@ import model.Board;
 import model.Coordinate;
 import model.Piece;
 
-import java.util.ArrayList;
-
 public class PieceManipulator {
 
-    public void applyPieceInBoardInDesiredCoordinate(Piece piece, Board board, Coordinate coordinate) {
+    public void applyPieceInBoard(Piece piece, Board board, Coordinate desiredCoordinate) {
 
-        int boardLine = coordinate.getXCoordinate();
-        int boardColumn = coordinate.getYCoordinate();
+        int boardLine = desiredCoordinate.getX();
+        int boardColumn = desiredCoordinate.getY();
 
         for(int line = 0; line < piece.getLineSize(); line++){
             for (int column = 0; column < piece.getColumnSize(); column++){
                 if(piece.getCellValue(line, column) == 'X' ){
-                    board.incrementBoardCell(boardLine, boardColumn);
+                    board.incrementCell(boardLine, boardColumn);
                 }
                 boardColumn++;
             }
-            boardColumn = coordinate.getYCoordinate();
+            boardColumn = desiredCoordinate.getY();
             boardLine++;
-        }
-    }
-
-    public void populateDefaultPositionOfEachPiece(ArrayList<Piece> pieces, int[] defaultPositionOfEachPiece){
-        for(int i = 0; i < pieces.size(); i++){
-            defaultPositionOfEachPiece[i] = 0;
         }
     }
 }

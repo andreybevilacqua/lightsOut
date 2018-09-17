@@ -1,7 +1,7 @@
 package processing;
 
 import model.Board;
-import initializer.BoardObjectInitializer;
+import initializer.BoardInitializer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class HashCodeTest {
     private static Board board;
     private static Board anotherBoard;
 
-    private static BoardObjectInitializer boardObjectInitializer;
+    private static BoardInitializer boardInitializer;
     private static ReadFile readFile;
 
     private String firstLine;
@@ -29,8 +29,8 @@ public class HashCodeTest {
             secondLine = readFile.getSecondLine();
             thirdLine = readFile.getThirdLine();
 
-            boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-            board = boardObjectInitializer.getBoard();
+            boardInitializer = new BoardInitializer(firstLine, secondLine);
+            board = boardInitializer.getBoard();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class HashCodeTest {
 
         int initialBoardHashCode = board.generateDeepHashCode();
 
-        anotherBoard = boardObjectInitializer.getBoard();
+        anotherBoard = boardInitializer.getBoard();
         int anotherHash = anotherBoard.generateDeepHashCode();
 
         Assert.assertTrue(initialBoardHashCode == anotherHash);
@@ -50,7 +50,7 @@ public class HashCodeTest {
 
         for(int i = 0; i < finalIntendedBoard.getLineSize(); i++){
             for(int j = 0; j < finalIntendedBoard.getColumnSize(); j++){
-                finalIntendedBoard.insertValueIntoCell(0, i, j);
+                finalIntendedBoard.insertValue(0, i, j);
             }
         }
 
@@ -58,7 +58,7 @@ public class HashCodeTest {
 
         for(int i = 0; i < anotherBoard.getLineSize(); i++){
             for(int j = 0; j < anotherBoard.getColumnSize(); j++){
-                anotherBoard.insertValueIntoCell(0, i, j);
+                anotherBoard.insertValue(0, i, j);
             }
         }
         anotherHash = anotherBoard.generateDeepHashCode();

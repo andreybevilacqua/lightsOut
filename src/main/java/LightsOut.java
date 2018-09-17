@@ -1,6 +1,6 @@
-import initializer.BoardObjectInitializer;
-import initializer.FinalBoardObjectInitializer;
-import initializer.PieceObjectInitializer;
+import initializer.BoardInitializer;
+import initializer.FinalBoardInitializer;
+import initializer.PieceInitializer;
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 public class LightsOut {
 
-    private static BoardObjectInitializer boardObjectInitializer;
-    private static FinalBoardObjectInitializer finalBoardObjectInitializer;
-    private static PieceObjectInitializer pieceObjectInitializer;
+    private static BoardInitializer boardInitializer;
+    private static FinalBoardInitializer finalBoardInitializer;
+    private static PieceInitializer pieceInitializer;
     private static ReadFile readFile;
 
     private static Board board;
@@ -35,15 +35,15 @@ public class LightsOut {
             String secondLine = readFile.getSecondLine();
             String thirdLine = readFile.getThirdLine();
 
-            boardObjectInitializer = new BoardObjectInitializer(firstLine, secondLine);
-            finalBoardObjectInitializer = new FinalBoardObjectInitializer();
-            pieceObjectInitializer = new PieceObjectInitializer(thirdLine);
+            boardInitializer = new BoardInitializer(firstLine, secondLine);
+            finalBoardInitializer = new FinalBoardInitializer();
+            pieceInitializer = new PieceInitializer(thirdLine);
 
-            board = boardObjectInitializer.getBoard();
-            finalBoard = finalBoardObjectInitializer.initializeFinalBoard(board.getLineSize(),
+            board = boardInitializer.getBoard();
+            finalBoard = finalBoardInitializer.initialize(board.getLineSize(),
                     board.getColumnSize(), board.getDepth());
 
-            pieces = pieceObjectInitializer.getPieces();
+            pieces = pieceInitializer.getPieces();
 
             CoordinateManipulator.findAllPossiblieCoordinateOptionsForEachPiece(board, pieces);
 
