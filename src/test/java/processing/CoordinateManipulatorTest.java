@@ -1,19 +1,19 @@
 package processing;
 
+import initializer.BoardInitializer;
+import initializer.PieceInitializer;
 import manipulator.CoordinateManipulator;
 import model.Board;
 import model.Piece;
-import initializer.BoardInitializer;
-import initializer.PieceInitializer;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CoordinateManipulatorTest {
 
     private Board board;
-    private ArrayList<Piece> pieces;
+    private List<Piece> pieces;
     private BoardInitializer boardInitializer;
     private PieceInitializer pieceInitializer;
 

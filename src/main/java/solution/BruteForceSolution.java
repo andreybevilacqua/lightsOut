@@ -1,12 +1,13 @@
 package solution;
 
+import manipulator.BoardManipulator;
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
-import manipulator.BoardManipulator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BruteForceSolution implements Solution{
@@ -16,10 +17,10 @@ public class BruteForceSolution implements Solution{
     private Board board;
     private Board finalBoard;
 
-    private ArrayList<Piece> pieces;
-    private ArrayList<Board> boardsGeneratedList;
+    private List<Piece> pieces;
+    private List<Board> boardsGeneratedList;
 
-    public BruteForceSolution(Board board, Board finalBoard, ArrayList<Piece> pieces){
+    public BruteForceSolution(Board board, Board finalBoard, List<Piece> pieces){
         this.board = board;
         this.finalBoard = finalBoard;
         this.pieces = pieces;
@@ -29,15 +30,15 @@ public class BruteForceSolution implements Solution{
         boardsGeneratedList = new ArrayList();
     }
 
-    public ArrayList<PieceCoordinate> solution(){
+    public List<PieceCoordinate> solution(){
 
         Board newBoard;
         PieceCoordinate pieceCoordinate;
 
-        ArrayList<ArrayList<PieceCoordinate>> piecesAndCoordinates = new ArrayList();
-        ArrayList<PieceCoordinate> resultList = new ArrayList();
+        List<List<PieceCoordinate>> piecesAndCoordinates = new ArrayList();
+        List<PieceCoordinate> resultList = new ArrayList();
 
-        ArrayList<ArrayList<Board>> boardsLists = new ArrayList();
+        List<List<Board>> boardsLists = new ArrayList();
 
         Map<Board, Board> mapOfBoards = new HashMap();
 
@@ -47,11 +48,11 @@ public class BruteForceSolution implements Solution{
 
         for(Piece piece : pieces){
 
-            ArrayList<Board> tempBoardList = new ArrayList();
+            List<Board> tempBoardList = new ArrayList();
 
             for(int b = boardCounter; b <  boardsGeneratedList.size(); b++){
-                ArrayList<Board> generatedBoards = new ArrayList();
-                ArrayList<PieceCoordinate> pieceCoordinates = new ArrayList();
+                List<Board> generatedBoards = new ArrayList();
+                List<PieceCoordinate> pieceCoordinates = new ArrayList();
 
                 for(int i = 0; i < piece.getCoordinates().size(); i++){
                     newBoard = boardManipulator.createNewBoard(boardsGeneratedList.get(b), piece, i);

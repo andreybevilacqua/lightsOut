@@ -8,6 +8,7 @@ import processing.Executor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CircularLoopSolution implements Solution {
 
@@ -18,13 +19,13 @@ public class CircularLoopSolution implements Solution {
     private Board board;
     private Board finalBoard;
 
-    private ArrayList<Piece> pieces;
-    private ArrayList<Piece> piecesBackup;
-    private ArrayList<Board> boardsGeneratedList;
-    private ArrayList<PieceCoordinate> pieceCoordinatesList;
-    private ArrayList<PieceCoordinate> resultedList;
+    private List<Piece> pieces;
+    private List<Piece> piecesBackup;
+    private List<Board> boardsGeneratedList;
+    private List<PieceCoordinate> pieceCoordinatesList;
+    private List<PieceCoordinate> resultedList;
 
-    public CircularLoopSolution(Board board, Board finalBoard, ArrayList<Piece> pieces, ArrayList<Piece> piecesBackup){
+    public CircularLoopSolution(Board board, Board finalBoard, List<Piece> pieces, List<Piece> piecesBackup){
         this.board = board;
         this.finalBoard = finalBoard;
         this.pieces = pieces;
@@ -38,7 +39,7 @@ public class CircularLoopSolution implements Solution {
         resultedList = new ArrayList();
     }
 
-    public ArrayList<PieceCoordinate> solution(){
+    public List<PieceCoordinate> solution(){
 
         int pointerWhichPieceImIn = 0;
         int pointerWhichCoordinateShouldIUse = 0; // pointerFromAllListThatDefinesWhichCoordinateShouldIUse

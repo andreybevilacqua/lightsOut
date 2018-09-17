@@ -1,16 +1,16 @@
 import initializer.BoardInitializer;
 import initializer.FinalBoardInitializer;
 import initializer.PieceInitializer;
+import manipulator.CoordinateManipulator;
 import model.Board;
 import model.Piece;
 import model.PieceCoordinate;
-import manipulator.CoordinateManipulator;
 import processing.Executor;
 import processing.ReadFile;
 import solution.Strategy;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class LightsOut {
 
@@ -21,8 +21,8 @@ public class LightsOut {
 
     private static Board board;
     private static Board finalBoard;
-    private static ArrayList<Piece> pieces;
-    private static ArrayList<PieceCoordinate> resultedList;
+    private static List<Piece> pieces;
+    private static List<PieceCoordinate> resultedList;
 
     public static void main(String[] args) {
 

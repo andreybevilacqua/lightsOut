@@ -3,6 +3,7 @@ package initializer;
 import model.Board;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BoardInitializer {
 
@@ -22,7 +23,7 @@ public class BoardInitializer {
     public Board getBoard() { return board; }
 
     private void createBoard(String secondLine){
-        ArrayList<String> boardNumbersAsString = getBoardNumbersAsString(secondLine);
+        List<String> boardNumbersAsString = getBoardNumbersAsString(secondLine);
 
         board = new Board(boardNumbersAsString.size(),
                 boardNumbersAsString.get(0).length(), depth);
@@ -30,11 +31,11 @@ public class BoardInitializer {
         populateBoardWithInputNumbers(secondLine);
     }
 
-    private ArrayList<String> getBoardNumbersAsString(String secondLine){
+    private List<String> getBoardNumbersAsString(String secondLine){
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
-        ArrayList<String> boardNumbersAsString = new ArrayList();
+        List<String> boardNumbersAsString = new ArrayList();
 
         for(int i = 0; i <= secondLine.length(); i++){
 

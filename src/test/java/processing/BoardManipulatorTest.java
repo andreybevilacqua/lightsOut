@@ -11,13 +11,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class BoardManipulatorTest {
 
 
     private Board board;
-    private ArrayList<Piece> pieces;
+    private List<Piece> pieces;
     private BoardInitializer boardInitializer;
     private PieceInitializer pieceInitializer;
 

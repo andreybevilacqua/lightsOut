@@ -5,10 +5,11 @@ import model.Coordinate;
 import model.Piece;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CoordinateManipulator {
 
-    public static void findAllPossiblieCoordinateOptionsForEachPiece(Board board, ArrayList<Piece> pieces) {
+    public static void findAllPossiblieCoordinateOptionsForEachPiece(Board board, List<Piece> pieces) {
         int totalPossibleOptions;
 
         int pieceLineSize;
@@ -19,7 +20,7 @@ public class CoordinateManipulator {
 
         boolean didIChangeLine;
 
-        ArrayList<Coordinate> coordinates = new ArrayList<>();
+        List<Coordinate> coordinates = new ArrayList();
 
         for (Piece piece : pieces) {
 

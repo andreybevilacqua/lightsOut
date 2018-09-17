@@ -4,24 +4,25 @@ import model.Piece;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class PieceInitializer {
 
-    private ArrayList<String> pieceChars;
-    private ArrayList<Piece> pieces;
+    private List<String> pieceChars;
+    private List<Piece> pieces;
 
     public PieceInitializer(String lastLine){
         pieceChars = generatePiecesChars(lastLine);
         pieces = generatePieceObjectsList(pieceChars);
     }
 
-    public ArrayList<Piece> getPieces() { return pieces;}
+    public List<Piece> getPieces() { return pieces;}
 
-    private ArrayList<String> generatePiecesChars(String lastLine){
+    private List<String> generatePiecesChars(String lastLine){
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
-        ArrayList<String> piecesChars = new ArrayList();
+        List<String> piecesChars = new ArrayList();
 
         for(int i = 0; i <= lastLine.length(); i++){
 
@@ -41,9 +42,9 @@ public class PieceInitializer {
         return piecesChars;
     }
 
-    private ArrayList<Piece> generatePieceObjectsList(ArrayList<String> piecesChars){
-        ArrayList<Piece> pieces = new ArrayList();
-        ArrayList<String> listValuesOfEachPiece = new ArrayList();
+    private List<Piece> generatePieceObjectsList(List<String> piecesChars){
+        List<Piece> pieces = new ArrayList();
+        List<String> listValuesOfEachPiece = new ArrayList();
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -75,7 +76,7 @@ public class PieceInitializer {
         return pieces;
     }
 
-    private int getBiggestString(ArrayList<String> tempArrayList){
+    private int getBiggestString(List<String> tempArrayList){
 //        int result = 0;
 //        int size;
 //
@@ -91,7 +92,7 @@ public class PieceInitializer {
         return tempArrayList.get(tempArrayList.size()-1).length();
     }
 
-    private Piece createNewPiece(int lineSize, int columnSize, ArrayList<String> listOFValuesOfEachPiece){
+    private Piece createNewPiece(int lineSize, int columnSize, List<String> listOFValuesOfEachPiece){
         Piece piece = new Piece(lineSize, columnSize);
 
         String xOrDot;

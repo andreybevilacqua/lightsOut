@@ -2,9 +2,9 @@ package solution;
 
 import model.PieceCoordinate;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Solution {
 
-    ArrayList<PieceCoordinate> solution();
+    List<PieceCoordinate> solution();
 }

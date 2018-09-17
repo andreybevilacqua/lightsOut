@@ -1,14 +1,14 @@
 package processing;
 
-import model.Board;
-import model.Piece;
 import initializer.BoardInitializer;
 import initializer.PieceInitializer;
+import model.Board;
+import model.Piece;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class BoardInitializerTest {
 
@@ -23,7 +23,7 @@ public class BoardInitializerTest {
 
     private Board board;
 
-    private ArrayList<Piece> pieces;
+    private List<Piece> pieces;
 
     @Test
     public void objectInitializerTestWithFirstFile() throws FileNotFoundException {

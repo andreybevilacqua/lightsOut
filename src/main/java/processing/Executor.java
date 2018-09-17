@@ -9,26 +9,27 @@ import solution.Strategy;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class Executor {
 
-    private ArrayList<Piece> pieces;
-    private ArrayList<Piece> piecesBackup;
+    private List<Piece> pieces;
+    private List<Piece> piecesBackup;
 
     private BruteForceSolution bruteForceSolution;
     private CircularLoopSolution circularLoopSolution;
 
     public Executor(){ }
 
-    public Executor(Board board, Board finalBoard, ArrayList<Piece> pieces){
+    public Executor(Board board, Board finalBoard, List<Piece> pieces){
         this.pieces = pieces;
-        this.piecesBackup = new ArrayList<>();
+        this.piecesBackup = new ArrayList();
 
         bruteForceSolution = new BruteForceSolution(board, finalBoard, pieces);
         circularLoopSolution = new CircularLoopSolution(board, finalBoard, pieces, piecesBackup);
     }
 
-    public ArrayList<PieceCoordinate> execute(Strategy strategy){
+    public List<PieceCoordinate> execute(Strategy strategy){
 
         piecesBackup.addAll(pieces);
 
@@ -41,7 +42,7 @@ public class Executor {
         }
     }
 
-    public String prepareResult(ArrayList<PieceCoordinate> resultedList){
+    public String prepareResult(List<PieceCoordinate> resultedList){
         StringBuilder coordinates = new StringBuilder();
         StringBuilder result = new StringBuilder();
 
@@ -54,8 +55,8 @@ public class Executor {
         return result.toString();
     }
 
-    public ArrayList<PieceCoordinate> prepareResult(ArrayList<Piece> auxListOfPieces, ArrayList<PieceCoordinate> pieceCoordinates){
-        ArrayList<PieceCoordinate> resultedList = new ArrayList();
+    public List<PieceCoordinate> prepareResult(List<Piece> auxListOfPieces, List<PieceCoordinate> pieceCoordinates){
+        List<PieceCoordinate> resultedList = new ArrayList();
 
         for(Piece piece : auxListOfPieces){
             for(PieceCoordinate pieceCoordinate : pieceCoordinates){
