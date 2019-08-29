@@ -20,7 +20,7 @@ public class CoordinateManipulator {
 
         boolean didIChangeLine;
 
-        List<Coordinate> coordinates = new ArrayList();
+        List<Coordinate> coordinates = new ArrayList<>();
 
         for (Piece piece : pieces) {
 
@@ -48,7 +48,7 @@ public class CoordinateManipulator {
                         didIChangeLine = true;
                     }
 
-                    if (pieceColumnSize < board.getColumnSize() && didIChangeLine == false) {
+                    if (pieceColumnSize < board.getColumnSize() && !didIChangeLine) {
                         columnCoordinateCounter++;
                         pieceColumnSize++;
                     }
@@ -81,7 +81,6 @@ public class CoordinateManipulator {
     }
 
     private static int calculateTotalPossibleOptions(Board board, Piece piece) {
-
         // If the size of line or column be equals of board, their values should be one.
         int lineDifference = (board.getLineSize() - piece.getLineSize()) + 1;
         int columnDifference = (board.getColumnSize() - piece.getColumnSize()) + 1;

@@ -8,11 +8,10 @@ import java.util.List;
 
 public class PieceInitializer {
 
-    private List<String> pieceChars;
     private List<Piece> pieces;
 
     public PieceInitializer(String lastLine){
-        pieceChars = generatePiecesChars(lastLine);
+        List<String> pieceChars = generatePiecesChars(lastLine);
         pieces = generatePieceObjectsList(pieceChars);
     }
 
@@ -22,7 +21,7 @@ public class PieceInitializer {
         String temp;
         StringBuilder stringBuilder = new StringBuilder();
 
-        List<String> piecesChars = new ArrayList();
+        List<String> piecesChars = new ArrayList<>();
 
         for(int i = 0; i <= lastLine.length(); i++){
 
@@ -43,8 +42,8 @@ public class PieceInitializer {
     }
 
     private List<Piece> generatePieceObjectsList(List<String> piecesChars){
-        List<Piece> pieces = new ArrayList();
-        List<String> listValuesOfEachPiece = new ArrayList();
+        List<Piece> pieces = new ArrayList<>();
+        List<String> listValuesOfEachPiece = new ArrayList<>();
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -77,17 +76,6 @@ public class PieceInitializer {
     }
 
     private int getBiggestString(List<String> tempArrayList){
-//        int result = 0;
-//        int size;
-//
-//        for(String s : tempArrayList){
-//            size = s.length();
-//            if(size > result){
-//                result = size;
-//            }
-//        }
-//
-//        return result;
         tempArrayList.sort(Comparator.comparing(String::length));
         return tempArrayList.get(tempArrayList.size()-1).length();
     }

@@ -10,10 +10,9 @@ public class Piece {
 
     private char[][] piece;
 
-    private List<Coordinate> coordinates;
+    private List<Coordinate> coordinates = new ArrayList<>();
 
     public Piece(int line, int column){
-
         // Mininum size of each piece: [1][1]
         if(line < 1){
             line = 1;
@@ -27,8 +26,6 @@ public class Piece {
 
         X = 'X';
         dot = '.';
-
-        coordinates = new ArrayList();
     }
 
     public char[][] getPiece(){ return piece; }

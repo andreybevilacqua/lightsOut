@@ -23,14 +23,13 @@ public class Executor {
 
     public Executor(Board board, Board finalBoard, List<Piece> pieces){
         this.pieces = pieces;
-        this.piecesBackup = new ArrayList();
+        this.piecesBackup = new ArrayList<>();
 
         bruteForceSolution = new BruteForceSolution(board, finalBoard, pieces);
         circularLoopSolution = new CircularLoopSolution(board, finalBoard, pieces, piecesBackup);
     }
 
     public List<PieceCoordinate> execute(Strategy strategy){
-
         piecesBackup.addAll(pieces);
 
         pieces.sort(Comparator.comparingInt(piece -> piece.getCoordinates().size()));
@@ -56,7 +55,7 @@ public class Executor {
     }
 
     public List<PieceCoordinate> prepareResult(List<Piece> auxListOfPieces, List<PieceCoordinate> pieceCoordinates){
-        List<PieceCoordinate> resultedList = new ArrayList();
+        List<PieceCoordinate> resultedList = new ArrayList<>();
 
         for(Piece piece : auxListOfPieces){
             for(PieceCoordinate pieceCoordinate : pieceCoordinates){

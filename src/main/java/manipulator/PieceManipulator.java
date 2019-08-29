@@ -7,7 +7,6 @@ import model.Piece;
 public class PieceManipulator {
 
     public void applyPieceInBoard(Piece piece, Board board, Coordinate desiredCoordinate) {
-
         int boardLine = desiredCoordinate.getX();
         int boardColumn = desiredCoordinate.getY();
 

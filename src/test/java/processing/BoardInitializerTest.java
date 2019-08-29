@@ -27,7 +27,6 @@ public class BoardInitializerTest {
 
     @Test
     public void objectInitializerTestWithFirstFile() throws FileNotFoundException {
-
         readFile = new ReadFile("01.txt");
 
         firstLine = readFile.getFirstLine();
@@ -41,9 +40,9 @@ public class BoardInitializerTest {
         pieces = pieceInitializer.getPieces();
 
         // Board validation.
-        Assert.assertTrue(board.getDepth() == 2);
-        Assert.assertTrue(board.getLineSize() == 3);
-        Assert.assertTrue(board.getColumnSize() == 3);
+        Assert.assertEquals(2, board.getDepth());
+        Assert.assertEquals(3, board.getLineSize());
+        Assert.assertEquals(3, board.getColumnSize());
 
         Assert.assertEquals(1, board.getCellValue(0,0));
         Assert.assertEquals(0, board.getCellValue(0,1));
@@ -74,7 +73,6 @@ public class BoardInitializerTest {
 
     @Test
     public void objectInitializerTestWithThirdFile() throws FileNotFoundException {
-
         readFile = new ReadFile("03.txt");
         firstLine = readFile.getFirstLine();
         secondLine = readFile.getSecondLine();
@@ -87,9 +85,9 @@ public class BoardInitializerTest {
         pieces = pieceInitializer.getPieces();
 
         // Board validation.
-        Assert.assertTrue(board.getDepth() == 3);
-        Assert.assertTrue(board.getLineSize() == 6);
-        Assert.assertTrue(board.getColumnSize() == 4);
+        Assert.assertEquals(3, board.getDepth());
+        Assert.assertEquals(6, board.getLineSize());
+        Assert.assertEquals(4, board.getColumnSize());
 
         Assert.assertEquals(2, board.getCellValue(0,0));
         Assert.assertEquals(1, board.getCellValue(0,1));

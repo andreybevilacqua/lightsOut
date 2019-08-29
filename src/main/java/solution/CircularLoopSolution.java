@@ -32,15 +32,14 @@ public class CircularLoopSolution implements Solution {
 
         boardManipulator = new BoardManipulator();
 
-        boardsGeneratedList = new ArrayList();
-        pieceCoordinatesList = new ArrayList();
+        boardsGeneratedList = new ArrayList<>();
+        pieceCoordinatesList = new ArrayList<>();
 
         this.piecesBackup = piecesBackup;
-        resultedList = new ArrayList();
+        resultedList = new ArrayList<>();
     }
 
     public List<PieceCoordinate> solution(){
-
         int pointerWhichPieceImIn = 0;
         int pointerWhichCoordinateShouldIUse = 0; // pointerFromAllListThatDefinesWhichCoordinateShouldIUse
         int pointerDefaultPositionOfEachPiece = 0;
@@ -54,7 +53,7 @@ public class CircularLoopSolution implements Solution {
         Board newBoard;
         PieceCoordinate pieceCoordinate;
 
-        while(foundAnswer == false && didNotFound == false){
+        while(!foundAnswer && !didNotFound){
 
             for(int i = 0; i < pieces.size(); i++){
 
@@ -123,7 +122,6 @@ public class CircularLoopSolution implements Solution {
         if(didNotFound){
             return null;
         }
-
         return resultedList;
     }
 

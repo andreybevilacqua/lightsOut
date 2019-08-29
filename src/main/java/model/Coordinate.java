@@ -16,8 +16,6 @@ public class Coordinate {
 
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(x).append(",").append(y);
-        return sb.toString();
+        return x + "," + y;
     }
 }
